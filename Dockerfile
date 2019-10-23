@@ -10,7 +10,7 @@ RUN cd /home && wget http://downloads.sourceforge.net/project/boost/boost/1.60.0
   && tar xfz boost_1_60_0.tar.gz \
   && rm boost_1_60_0.tar.gz \
   && cd boost_1_60_0 \
-  && ./bootstrap.sh --prefix=/usr/local \
+  && ./bootstrap.sh --prefix=/usr/local --with-libraries=program_options,regex,filesystem,system\
   && ./b2 install \
   && cd /home \
   && rm -rf boost_1_60_0
