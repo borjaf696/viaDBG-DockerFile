@@ -6,3 +6,5 @@ cd /home && wget http://downloads.sourceforge.net/project/boost/boost/1.60.0/boo
   && ./b2 install \
   && cd /home \
   && rm -rf boost_1_60_0
+
+--with-libraries=program_options,regex,filesystem,system
