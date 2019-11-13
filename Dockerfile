@@ -36,6 +36,12 @@ RUN git clone https://github.com/jts/sga.git \
 	&& ./configure --with-bamtools=/usr/local/include/bamtools-for-SGA --with-hoard=/usr/lib64\
 	&&  make && make install
 
+#NodeJs
+RUN apt-get -y install curl
+RUN curl -sL https://deb.nodesource.com/setup_13.x
+RUN apt-get -y install nodejs
+RUN git clone https://github.com/borjaf696/viaDBG-DockerFile
+
 # GitHub download
 RUN cd /opt && git clone https://github.com/borjaf696/viaDBG.git viaDBG
 
