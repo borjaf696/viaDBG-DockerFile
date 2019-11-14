@@ -46,7 +46,7 @@ RUN git clone https://github.com/borjaf696/viaDBG-DockerFile
 RUN cd /opt && git clone https://github.com/borjaf696/viaDBG.git viaDBG
 
 # Enter and make
-RUN cd /opt/viaDBG && make clean && make
+RUN cd /opt/viaDBG && make clean && make && cp -r Utils /Utils && mkdir /output/ && mkdir /html/
 RUN export PATH=$PATH:/opt/viaDBG/bin/
 
 # Creamos carpeta de datos
