@@ -40,13 +40,14 @@ RUN git clone https://github.com/jts/sga.git \
 RUN apt-get -y install curl
 RUN curl -sL https://deb.nodesource.com/setup_13.x
 RUN apt-get -y install nodejs
-RUN git clone https://github.com/borjaf696/viaDBG-DockerFile
+RUN node -v 
 
 # GitHub download
 RUN cd /opt && git clone https://github.com/borjaf696/viaDBG.git viaDBG
+RUN cd /opt && git clone https://github.com/borjaf696/nodeVia.git
 
 # Enter and make
-RUN cd /opt/viaDBG && make clean && make && cp -r Utils /Utils && mkdir /output/ && mkdir /html/
+RUN cd /opt/viaDBG && make clean && make && cp -r Utils /Utils && mkdir $HOME/output/ && mkdir $HOME/html/
 RUN export PATH=$PATH:/opt/viaDBG/bin/
 
 # Creamos carpeta de datos
@@ -55,9 +56,12 @@ RUN /sbin/ldconfig -v
 
 # Link al binario
 RUN cd /usr/bin && ln -s /opt/viaDBG/bin/viaDBG
-RUN viaDBG
+
 
 # Quast
 RUN git clone https://github.com/ablab/quast.git && cd quast && ./setup.py install
 RUN ls /usr/local/bin/
 ## Path to metaquast -> /usr/local/bin/metaquast.py
+
+#Launch nodejs server
+RUN cd /opt/nodeVia && nodejs server.js 
