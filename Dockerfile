@@ -64,4 +64,6 @@ RUN ls /usr/local/bin/
 ## Path to metaquast -> /usr/local/bin/metaquast.py
 
 #Launch nodejs server
-RUN cd /opt/nodeVia && nodejs server.js 
+#RUN cd /opt/nodeVia && nodejs server.js 
+WORKDIR /opt/nodeVia
+CMD ["nodejs", "server.js"]
