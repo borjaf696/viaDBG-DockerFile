@@ -43,8 +43,9 @@ RUN apt-get -y install nodejs
 RUN node -v 
 
 # GitHub download
+RUN ls -lsa /home
 RUN cd /opt && git clone https://github.com/borjaf696/viaDBG.git viaDBG
-RUN cd /opt && git clone https://github.com/borjaf696/nodeVia.git
+RUN cd /opt && git clone https://github.com/borjaf696/nodeVia.git && cd nodeVia && rm public/uploads_*/.gitignore
 
 # Enter and make
 RUN cd /opt/viaDBG && make clean && make && cp -r Utils /Utils && mkdir $HOME/output/ && mkdir $HOME/html/
@@ -57,13 +58,14 @@ RUN /sbin/ldconfig -v
 # Link al binario
 RUN cd /usr/bin && ln -s /opt/viaDBG/bin/viaDBG
 
-
 # Quast
 RUN git clone https://github.com/ablab/quast.git && cd quast && ./setup.py install
 RUN ls /usr/local/bin/
+
 ## Path to metaquast -> /usr/local/bin/metaquast.py
 
 #Launch nodejs server
 #RUN cd /opt/nodeVia && nodejs server.js 
 WORKDIR /opt/nodeVia
 CMD ["nodejs", "server.js"]
+
